@@ -13,6 +13,8 @@ const images = require('./routes/images')
 const carts = require('./routes/carts')
 const discounts = require('./routes/discounts')
 const cors = require('cors')
+const helmet = require('helmet')
+const compression = require('compression')
 const MongoStore = require('connect-mongo')(session)
 
 
@@ -36,6 +38,8 @@ app.use((req, res, next) => {
 })
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(helmet())
+app.use(compression())
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
