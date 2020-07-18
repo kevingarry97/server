@@ -29,17 +29,8 @@ if(!config.get("jwtPrivatekey")) {
 // In-Built Middlewares
 app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
- 
-// parse application/json
-app.use(bodyParser.json())
- 
-app.use(function (req, res) {
-  res.setHeader('Content-Type', 'text/plain')
-  res.write('you posted:\n')
-  res.end(JSON.stringify(req.body, null, 2))
-})
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 app.use(helmet())
 app.use(compression())
 app.use(session({
