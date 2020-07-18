@@ -1,5 +1,6 @@
 const config = require('config')
 const express = require('express')
+const bodyParser = require('body-parser')
 const mails = require('./routes/mails')
 const { mongoose } = require('./db/db')
 const category = require('./routes/categories')
@@ -14,7 +15,6 @@ const discounts = require('./routes/discounts')
 const helmet = require('helmet')
 const compression = require('compression')
 const cors = require('cors')
-var bodyParser = require('body-parser')
 const MongoStore = require('connect-mongo')(session)
 
 
@@ -29,12 +29,10 @@ if(!config.get("jwtPrivatekey")) {
 // In-Built Middlewares
 app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(helmet())
 app.use(compression())
-bodyParser = {
-  json: {limit: '50mb', extended: true},
-  urlencoded: {limit: '50mb', extended: true}
-};
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
