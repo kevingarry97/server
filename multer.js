@@ -17,7 +17,7 @@ const fileFilter = (req, file, cb) => {
     cb({ message: 'Unsupported File format' }, false)
 }
 
-const upload = multer({ storage: storage, fileFilter: fileFilter })
+const upload = multer({ storage: storage, fileFilter: fileFilter, limits: { fieldSize: 10024 * 10024 } })
 
 module.exports = upload;
 
