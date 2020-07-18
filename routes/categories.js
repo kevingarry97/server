@@ -13,8 +13,8 @@ router.post('/', async (req, res) => {
     const { error } = validate(req.body)
     if (error) return res.status(400).send(error.details[0].message)
 
-    let category = await Category.findOne({ name: req.body.name })
-    if(category) return res.status(400).send('Duplicate Category')
+    // let category = await Category.findOne({ name: req.body.name })
+    // if(category) return res.status(400).send('Duplicate Category')
 
     category = new Category({ name: req.body.name });
     category = await category.save()
