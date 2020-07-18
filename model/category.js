@@ -24,7 +24,7 @@ function validateCategory(category) {
         name: Joi.string().required()
     });
 
-    return schema.validate(category, schema)
+    return Joi.validate(category, schema)
 } 
 
 exports.validate = validateCategory;
