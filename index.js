@@ -27,9 +27,6 @@ if(!config.get("jwtPrivatekey")) {
 }
 
 // In-Built Middlewares
-app.use(cors({origin: [
-  "https://tienda-appl.herokuapp.com"
-], credentials: true}));
 // app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "https://tienda-appl.herokuapp.com")
@@ -61,6 +58,11 @@ app.use((req, res, next) => {
 }) 
 
 // Routes
+
+app.use(cors({origin: [
+  "https://tienda-appl.herokuapp.com"
+], credentials: true}));
+
 app.use('/api', carts)
 app.use('/api/categories', category)
 app.use('/api/sub', subCategory)
