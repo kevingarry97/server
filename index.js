@@ -27,16 +27,12 @@ if(!config.get("jwtPrivatekey")) {
 }
 
 // In-Built Middlewares
-// app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "https://tienda-appl.herokuapp.com")
-//   res.setHeader("Access-Control-Allow-Credentials", "true")
-//   res.setHeader("Access-Control-Allow-Headers", "content-type")
-//   res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS")
-//   next()
-// })
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(cors({origin: [
+  "https://tienda-appl.herokuapp.com"
+], credentials: true}));
+
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 app.use(helmet())
 app.use(compression())
 app.use(session({
@@ -58,11 +54,6 @@ app.use((req, res, next) => {
 }) 
 
 // Routes
-
-app.use(cors({origin: [
-  "https://tienda-appl.herokuapp.com"
-], credentials: true}));
-
 app.use('/api', carts)
 app.use('/api/categories', category)
 app.use('/api/sub', subCategory)
