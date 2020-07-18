@@ -10,12 +10,21 @@ const categorySchema = new mongoose.Schema({
 
 const Category = mongoose.model('Category', categorySchema)
 
-function validateCategory(category) {
-    const schema = {
-        name: Joi.string().required()
-    };
 
-    return Joi.validate(category, schema)
+// const schema = Joi.object({ 
+//     name: Joi.string() .min(6) .required(),
+//     email: Joi.string() .min(6) .required() .email(),
+//     password: Joi.string() .min(6) .required() });
+    
+//     const validation = schema.validate(req.body);
+//     res.send(validation);
+
+function validateCategory(category) {
+    const schema = Joi.object({
+        name: Joi.string().required()
+    });
+
+    return schema.validate(category, schema)
 } 
 
 exports.validate = validateCategory;
