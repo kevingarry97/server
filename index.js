@@ -29,8 +29,6 @@ if(!config.get("jwtPrivatekey")) {
 // In-Built Middlewares
 app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 
-app.use(bodyParser.json({limit: '10mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(helmet())
 app.use(compression())
 app.use(session({
