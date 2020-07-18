@@ -19,8 +19,11 @@ router.post("/", async (req, res) => {
       res.send(info);
     });
 
-    let data = new Mails({
-        email: user
+    let data = await Mails.findOne({email: user})
+    if (data) return;
+
+    data = new Mails({
+      email: user
     })
 
     data = await data.save()
