@@ -5,7 +5,7 @@ const details = require("../config/details.json");
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const mails = await Mails.find()
   res.status(200).send(mails)
 })
