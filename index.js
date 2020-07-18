@@ -14,7 +14,7 @@ const discounts = require('./routes/discounts')
 const helmet = require('helmet')
 const compression = require('compression')
 const cors = require('cors')
-let bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const MongoStore = require('connect-mongo')(session)
 
 
@@ -31,10 +31,8 @@ app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 
 app.use(helmet())
 app.use(compression())
-bodyParser = {
-  json: {limit: '50mb', extended: true},
-  urlencoded: {limit: '50mb', extended: true}
-};
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
