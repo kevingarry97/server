@@ -14,7 +14,7 @@ router.get('/shopping-cart', (req, res) => {
 
 router.get('/orders', async (req, res) => {
     const order = await Order.find()
-    res.status(400).send(order)
+    res.send(order)
 })
 
 router.get('/add-to-cart/:id', async (req, res) => {
