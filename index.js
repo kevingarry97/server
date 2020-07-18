@@ -27,7 +27,7 @@ if(!config.get("jwtPrivatekey")) {
 }
 
 // In-Built Middlewares
-app.use(cors({credentials: true, origin: '*'}))
+app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
