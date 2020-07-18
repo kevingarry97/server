@@ -31,8 +31,8 @@ app.use(cors({origin: [
   "https://tienda-appl.herokuapp.com"
 ], credentials: true}));
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({limit: '50mb'}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(helmet())
 app.use(compression())
 app.use(session({
