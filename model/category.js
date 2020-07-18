@@ -27,6 +27,5 @@ const Category = mongoose.model('Category', categorySchema)
 //     return Joi.validate(category, schema)
 // } 
 
-exports.validate = validateCategory;
 exports.Category = Category;
 exports.categorySchema = categorySchema;
