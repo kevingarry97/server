@@ -29,7 +29,7 @@ if(!config.get("jwtPrivatekey")) {
 // In-Built Middlewares
 // app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "tienda-appl.herokuapp.com")
+  res.setHeader("Access-Control-Allow-Origin", "https://tienda-appl.herokuapp.com")
   res.setHeader("Access-Control-Allow-Credentials", "true")
   res.setHeader("Access-Control-Allow-Headers", "content-type")
   res.setHeader("Access-Control-Allow-Methods","PUT, POST, GET, DELETE, PATCH, OPTIONS")
