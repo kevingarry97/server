@@ -6,7 +6,8 @@ const details = require("../config/details.json");
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    res.send('Working')
+  const mails = await Mails.find()
+  res.status(200).send(mails)
 })
 
 router.post("/", async (req, res) => {
@@ -25,8 +26,7 @@ router.post("/", async (req, res) => {
     data = await data.save()
 });
 
-async function sendMail(user, callback) {
-    // create reusable transporter object using the default SMTP transport
+async function sendMail(user, cb) {
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
@@ -38,17 +38,16 @@ async function sendMail(user, callback) {
     });
   
     let mailOptions = {
-      from: 'Finn-Solutions Company', // sender address
-      to: user, // list of receivers
-      subject: "Welcome to tienda-app 👻", // Subject line
+      from: 'Finn-Solutions Company',
+      to: user,
+      subject: "Welcome to tienda-app 👻",
       html: `<h1>Hi, This is finn-solutions</h1><br>
       <h4>Thanks for joining us</h4>`
     };
   
-    // send mail with defined transport object
     let info = await transporter.sendMail(mailOptions);
   
-    callback(info);
+    cb(info);
   }
 
 module.exports = router
