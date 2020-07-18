@@ -8,4 +8,12 @@ const Mails = mongoose.model('Mails', new mongoose.Schema({
     }
 }))
 
+function validateMails(mail) {
+    const schema = Joi.object().keys({
+        email: Joi.string().email().required()
+    })
+
+    return schema.validate(mail)
+}
+
 exports.Mails = Mails;

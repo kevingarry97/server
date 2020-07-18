@@ -61,7 +61,7 @@ const orderSchema = new mongoose.Schema({
 })
 
 function validate(order) {
-    const schema = {
+    const schema = Joi.object().keys({
         firstName: Joi.string().min(3).max(25).required(),
         lastName: Joi.string().min(3).max(25).required(),
         email: Joi.string().required().email(),
@@ -70,9 +70,9 @@ function validate(order) {
         city: Joi.string().min(4).max(30).required(),
         phone: Joi.number().required(),
         textId: Joi.number().required()
-    }
+    })
 
-    return Joi.validate(order, schema)
+    return schema.validate(order)
 }
 
 const Order = mongoose.model('Order', orderSchema)

@@ -18,12 +18,12 @@ const discountSchema = new mongoose.Schema({
 })
 
 function validateDiscount(discount) {
-    const schema = {
+    const schema = Joi.object().keys({
         id: Joi.required(),
         percentage: Joi.number().required()
-    }
+    })
 
-    return Joi.validate(discount, schema)
+    return schema.validate(discount)
 }
 
 const Discount = mongoose.model('Discount', discountSchema)

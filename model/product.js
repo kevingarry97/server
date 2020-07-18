@@ -66,7 +66,7 @@ const productSchema = new mongoose.Schema({
 })
 
 function validateProduct(product) {
-    const schema = {
+    const schema = Joi.object().keys({
         productName: Joi.string().min(5).required(),
         categoryId: Joi.string().required(),
         subCategoryId: Joi.string().required(),
@@ -80,8 +80,8 @@ function validateProduct(product) {
         details: Joi.required(),
         description: Joi.string().min(20).required(),
         amount: Joi.number().required()
-    }
-    return Joi.validate(product, schema)
+    })
+    return schema.validate(product)
 }
 
 const Product = mongoose.model('Product', productSchema)

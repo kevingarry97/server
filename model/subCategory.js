@@ -17,12 +17,12 @@ const subCategorySchema = new mongoose.Schema({
 const SubCategory = mongoose.model('SubCategory', subCategorySchema)
 
 function validateSubCategory(sub) {
-    const schema = {
+    const schema = Joi.object().keys({
         name: Joi.string().required(),
         categoryId: Joi.string().required()
-    }
+    })
 
-    return Joi.validate(sub, schema)
+    return schema.validate(sub)
 }
 
 exports.SubCategory = SubCategory;
