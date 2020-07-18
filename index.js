@@ -27,7 +27,7 @@ if(!config.get("jwtPrivatekey")) {
 }
 
 // In-Built Middlewares
-app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com/'}))
+app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "https://tienda-appl.herokuapp.com")
 //   res.setHeader("Access-Control-Allow-Credentials", "true")
