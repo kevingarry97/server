@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const { Category } = require('../model/category')
+const { Category, validate } = require('../model/category')
 
 const router = express.Router()
 
@@ -10,6 +10,8 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const { error } = validate(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
 
     let category = await Category.findOne({ name: req.body.name })
     if(category) return res.status(400).send('Duplicate Category')

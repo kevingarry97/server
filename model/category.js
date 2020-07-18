@@ -19,13 +19,14 @@ const Category = mongoose.model('Category', categorySchema)
 //     const validation = schema.validate(req.body);
 //     res.send(validation);
 
-// function validateCategory(category) {
-//     const schema = Joi.object({
-//         name: Joi.string().required()
-//     });
+function validateCategory(category) {
+    const schema = Joi.object().keys({
+        name: Joi.string().required()
+    })
 
-//     return Joi.validate(category, schema)
-// } 
+    return Joi.validate(category, schema)
+} 
 
+exports.validate = validateCategory;
 exports.Category = Category;
 exports.categorySchema = categorySchema;
