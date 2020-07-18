@@ -38,10 +38,10 @@ async function sendMail(user, callback) {
     });
   
     let mailOptions = {
-      from: '"Fun Of Heuristic"<example.gimail.com>', // sender address
+      from: 'Finn-Solutions Company', // sender address
       to: user, // list of receivers
-      subject: "Wellcome to Fun Of Heuristic 👻", // Subject line
-      html: `<h1>Hi, This is finn</h1><br>
+      subject: "Welcome to tienda-app 👻", // Subject line
+      html: `<h1>Hi, This is finn-solutions</h1><br>
       <h4>Thanks for joining us</h4>`
     };
   
