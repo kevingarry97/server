@@ -32,7 +32,7 @@ app.use(cors({origin: [
 ], credentials: true}));
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(helmet())
 app.use(compression())
 app.use(session({
