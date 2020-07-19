@@ -22,8 +22,8 @@ const app = express()
 
 // Configuration
 if(!config.get("jwtPrivatekey")) {
-    console.error('FATAL ERROR: jwt key is not defined')
-    process.exit(1)
+  console.error('FATAL ERROR: jwt key is not defined')
+  process.exit(1)
 }
 
 // In-Built Middlewares
@@ -31,12 +31,12 @@ app.use(cors({credentials: true, origin: 'https://tienda-appl.herokuapp.com'}))
 
 app.use(helmet())
 app.use(compression())
-var jsonParser       = bodyParser.json({limit:1024*1024*20, type:'application/json'});
-var urlencodedParser = bodyParser.urlencoded({ extended:true,limit:1024*1024*20,type:'application/x-www-form-urlencoded' })
-
-app.use(jsonParser);
-app.use(urlencodedParser);
-
+app.use( bodyParser.json({limit: '50mb'}) );
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit:50000
+}));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
