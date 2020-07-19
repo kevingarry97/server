@@ -17,20 +17,44 @@ router.get('/product/:id', async (req, res) => {
 })
 
 router.post('/upload-images', upload.array('files'), async (req, res) => {
-    const uploader = async (path) => await cloudinary.uploads(path, 'Images')
-
     const urls = []
-    const files = req.files;
+    let files = req.files
+    const url = req.protocol + '://' + req.get('host')
 
     for(const file of files) {
         const { path } = file
 
-        const newPath = await uploader(path)
-
-        urls.push(newPath)
+        urls.push(url + '/image/' +path)
     }
 
-    res.send(urls)
+    let image = new Image({
+        image: urls
+    })
+
+    image = await image.save()
+    res.send(image);
+    // const uploader = async (path) => await cloudinary.uploads(path, 'Images')
+
+    // const urls = []
+    // const files = req.files;
+
+    // const product = await Product.findById(req.body.productId)
+    // if(!product) return res.status(400).send(`Can't find product`)
+
+    // for(const file of files) {
+    //     const { path } = file
+
+    //     const newPath = await uploader(path)
+
+    //     urls.push(newPath)
+    // }
+
+    // let images = new Image({
+    //     image: urls.map(item => item['url']),
+    //     product: product
+    // })
+    // images = await images.save()
+    // res.status(200).send(images)
 })
 
 module.exports = router;
