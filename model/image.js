@@ -6,19 +6,20 @@ const imageSchema = new mongoose.Schema({
     image: {
         type: [ String ],
         required: true
-    },
-    product: {
-        type: productSchema,
-        required: true
     }
+    // ,
+    // product: {
+    //     type: productSchema,
+    //     required: true
+    // }
 })
 
 function validateImages(image) {
-    const schema = {
+    const schema = Joi.objects().keys({
         image: Joi.required(),
         productId: Joi.required()
-    }
-    return Joi.validate(image, schema)
+    })
+    return schema.validate(image)
 }
 
 const Image = mongoose.model('Image', imageSchema);
