@@ -22,9 +22,6 @@ router.post('/upload-images', upload.array('files'), async (req, res) => {
     const urls = []
     const files = req.files;
 
-    const product = await Product.findById(req.body.productId)
-    if(!product) return res.status(400).send(`Can't find product`)
-
     for(const file of files) {
         const { path } = file
 
@@ -34,8 +31,7 @@ router.post('/upload-images', upload.array('files'), async (req, res) => {
     }
 
     let images = new Image({
-        image: urls.map(item => item['url']),
-        product: product
+        image: urls.map(item => item['url'])
     })
     images = await images.save()
     res.status(200).send(images)
