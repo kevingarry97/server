@@ -6,12 +6,11 @@ const imageSchema = new mongoose.Schema({
     image: {
         type: [ String ],
         required: true
+    },
+    product: {
+        type: productSchema,
+        required: true
     }
-    // ,
-    // product: {
-    //     type: productSchema,
-    //     required: true
-    // }
 })
 
 function validateImages(image) {
