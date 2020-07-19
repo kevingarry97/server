@@ -31,12 +31,10 @@ app.use(cors({credentials: true, origin: ['https://tienda-appl.herokuapp.com']})
 
 app.use(helmet())
 app.use(compression())
-app.use( bodyParser.json({limit: '50mb'}) );
 app.use(bodyParser.urlencoded({
-  limit: '50mb',
-  extended: true,
-  parameterLimit:50000
-}));
+  extended: false
+}))
+app.use(bodyParser.json())
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
