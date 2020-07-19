@@ -6,6 +6,11 @@ const { Category } = require('../model/category')
 
 const router = express.Router()
 
+router.get('/', async (req, res) => {
+    const product = await Product.find()
+    res.send(product)
+})
+
 router.post('/', async (req, res) => {
 
     const { error } = validate(req.body)
