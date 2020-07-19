@@ -33,12 +33,7 @@ router.post('/upload-images', upload.array('files'), async (req, res) => {
         urls.push(newPath)
     }
 
-    let images = new Image({
-        image: urls.map(item => item['url']),
-        product: product
-    })
-    images = await images.save()
-    res.status(200).send(images)
+    res.send(urls)
 })
 
 module.exports = router;
