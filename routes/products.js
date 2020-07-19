@@ -19,18 +19,8 @@ router.post('/', async (req, res) => {
 
     let product = new Product({
         productName: req.body.productName,
-        category: {
-            _id: category._id,
-            name: category.name
-        },
-        subCategory: {
-            _id: subCategory._id,
-            name: subCategory.name,
-            category: {
-                _id: subCategory.category._id,
-                name: subCategory.category.name
-            }
-        },
+        category,
+        subCategory,
         owner: req.body.owner,
         sizes: req.body.sizes,
         availability: req.body.availability,
