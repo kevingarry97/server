@@ -27,10 +27,15 @@ if(!config.get("jwtPrivatekey")) {
 }
 
 // In-Built Middlewares
+app.use(cors({origin: [
+  'https://tienda-appl.herokuapp.com'
+], credentials: true}));
 
 app.use(helmet())
 app.use(compression())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 app.use(bodyParser.json())
 app.use(session({
   secret: 'keyboard cat',
