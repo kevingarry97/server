@@ -13,8 +13,8 @@ const carts = require('./routes/carts')
 const discounts = require('./routes/discounts')
 const helmet = require('helmet')
 const compression = require('compression')
-
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const MongoStore = require('connect-mongo')(session)
 
 
@@ -27,14 +27,9 @@ if(!config.get("jwtPrivatekey")) {
 }
 
 // In-Built Middlewares
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://tienda-appl.herokuapp.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
-  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  next();
-})
+app.use(cors({origin: [
+  'https://tienda-appl.herokuapp.com'
+], credentials: true}));
 
 app.use(helmet())
 app.use(compression())
