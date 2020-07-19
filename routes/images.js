@@ -17,6 +17,10 @@ router.get('/product/:id', async (req, res) => {
 })
 
 router.post('/upload-images', upload.array('files'), async (req, res) => {
+    
+    const product = await Product.findById(req.body.productId)
+    if(!product) return res.status(404).send('Not Found');
+    
     const urls = []
     let files = req.files
     const url = req.protocol + '://' + req.get('host')
@@ -26,9 +30,6 @@ router.post('/upload-images', upload.array('files'), async (req, res) => {
 
         urls.push(url + '/image/' +path)
     }
-
-    const product = await Product.findById(req.body.productId)
-    if(!product) return res.status(404).send('Not Found');
 
     let image = new Image({
         image: urls,
