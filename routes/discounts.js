@@ -14,11 +14,11 @@ router.post('/discount', async (req, res) => {
     const { error } = validate(req.body)
     if(error) return res.status(400).send(error.details[0].message)
 
-    const item = await Image.findByIdAndRemove(req.body.id);
-    if(!item) return res.status(400).send('No product Found')
+    const product = await Image.findByIdAndRemove(req.body.id);
+    if(!product) return res.status(400).send('No product Found')
 
     let discountData = new Discount({
-        item,
+        product: product,
         percentage: req.body.percentage,
         newAmount: product.product.amount - (product.product.amount * req.body.percentage) / 100
     })

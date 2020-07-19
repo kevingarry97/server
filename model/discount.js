@@ -3,7 +3,7 @@ const Joi = require('joi')
 const { imageSchema } = require('./image')
 
 const discountSchema = new mongoose.Schema({
-    item: {
+    product: {
         type: imageSchema,
         required: true
     },
