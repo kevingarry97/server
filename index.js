@@ -34,7 +34,7 @@ app.use(cors({origin: [
 app.use(helmet())
 app.use(compression())
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }))
 app.use(bodyParser.json())
 app.use(session({

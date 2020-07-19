@@ -20,7 +20,7 @@ router.post('/upload-images', upload.array('files'), async (req, res) => {
     
     const product = await Product.findById(req.body.productId)
     if(!product) return res.status(404).send('Not Found');
-    
+
     const urls = []
     let files = req.files
     const url = req.protocol + '://' + req.get('host')
