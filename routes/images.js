@@ -39,27 +39,6 @@ router.post('/upload-images', upload.array('files'), async (req, res) => {
     })
     images = await images.save()
     res.status(200).send(images)
-    
-    // const product = await Product.findById(req.body.productId)
-    // if(!product) return res.status(404).send('Not Found');
-
-    // const urls = []
-    // let files = req.files
-    // const url = req.protocol + '://' + req.get('host')
-
-    // for(const file of files) {
-    //     const { path } = file
-
-    //     urls.push(url + '/image/' +path)
-    // }
-
-    // let image = new Image({
-    //     image: urls,
-    //     product
-    // })
-
-    // image = await image.save()
-    // res.send(image);
 })
 
 module.exports = router;

@@ -28,7 +28,7 @@ if(!config.get("jwtPrivatekey")) {
 
 // In-Built Middlewares
 app.use(cors({origin: [
-  'https://tienda-appl.herokuapp.com'
+  'https://tienda-appl.herokuapp.com', 'http://localhost:4200'
 ], credentials: true}));
 
 app.use(helmet())
