@@ -43,12 +43,14 @@ router.get('/remove/:id', (req, res) => {
     res.send(req.session.cart)
 })
 
-router.put('/orders/:id', async (req, res) => {
+router.get('/approve/:id', async (req, res) => {
     const id = req.params.id
 
     const order = await Order.findById(id)
     if(!order) return res.status(404).send('Not Found');
 
+    if(order.status === 'Confirmed') return;
+    
     order.status = 'Confirmed'
     await order.save()
 
