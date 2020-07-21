@@ -61,7 +61,7 @@ router.post('/checkout', async (req, res) => {
         city: req.body.city,
         zipCode: req.body.zipCode,
         phone: req.body.phone,
-        cart,
+        cart: {products: cart.generateArray()},
         textId: req.body.textId,
         orderNote: req.body.orderNote
     })
