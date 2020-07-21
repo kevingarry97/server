@@ -17,6 +17,11 @@ router.get('/orders', async (req, res) => {
     res.send(order)
 })
 
+router.get('/orders/:id', async (req, res) => {
+    const order = await Order.findById(req.params.id)
+    res.send(order);
+})
+
 router.get('/add-to-cart/:id', async (req, res) => {
     const productId = req.params.id;
     const cart = new Cart(req.session.cart ? req.session.cart : {})
