@@ -52,7 +52,8 @@ const orderSchema = new mongoose.Schema({
         type: String
     },
     cart: { 
-        type: Object, required: true 
+        type: Object,
+        required: true 
     },
     textId: {
         type: Number,
