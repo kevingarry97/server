@@ -46,8 +46,6 @@ router.get('/remove/:id', (req, res) => {
 router.post('/checkout', async (req, res) => {
     if(!req.session.cart) return res.send(req.session.cart);
 
-    const cart = new Cart(req.session.cart)
-
     const { error } = validate(req.body)
     if(error) return res.status(400).send(error.details[0].message)
 
@@ -61,7 +59,7 @@ router.post('/checkout', async (req, res) => {
         city: req.body.city,
         zipCode: req.body.zipCode,
         phone: req.body.phone,
-        cart,
+        cart: req.session.cart,
         textId: req.body.textId,
         orderNote: req.body.orderNote
     })
