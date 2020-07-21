@@ -43,6 +43,18 @@ router.get('/remove/:id', (req, res) => {
     res.send(req.session.cart)
 })
 
+router.put('/orders/:id', async (req, res) => {
+    const id = req.params.id
+
+    const order = await Order.findById(id)
+    if(!order) return res.status(404).send('Not Found');
+
+    order.status = 'Confirmed'
+    await order.save()
+
+    res.status(200).send(order);
+})
+
 router.post('/checkout', async (req, res) => {
     if(!req.session.cart) return res.send(req.session.cart);
 
@@ -74,6 +86,5 @@ router.post('/checkout', async (req, res) => {
         order
     })
 })
-
 
 module.exports = router;
