@@ -52,9 +52,8 @@ router.get('/approve/:id', async (req, res) => {
     if(order.status === 'Confirmed') return;
 
     order.status = 'Confirmed'
+    Image.findByIdAndRemove(id)
     await order.save()
-
-    await Image.findByIdAndRemove(id)
 
     res.status(200).send(order);
 })
