@@ -52,7 +52,8 @@ router.get('/approve/:id', async (req, res) => {
     if(order.status === 'Confirmed') return;
 
     order.status = 'Confirmed'
-    Image.findByIdAndRemove(id)
+
+    await Image.findByIdAndRemove(order.cart.products.map(i => i.item._id))
     await order.save()
 
     res.status(200).send(order);
@@ -76,7 +77,7 @@ router.post('/checkout', async (req, res) => {
         city: req.body.city,
         zipCode: req.body.zipCode,
         phone: req.body.phone,
-        cart: {products: cart.generateArray()},
+        cart: {products: cart.generateArray(), totalPrice: cart.totalPrice, totalQty: cart.totalQty},
         textId: req.body.textId,
         orderNote: req.body.orderNote
     })
