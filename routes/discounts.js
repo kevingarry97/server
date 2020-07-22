@@ -18,7 +18,7 @@ router.post('/discount', async (req, res) => {
     if(!product) return res.status(400).send('No product Found')
 
     let discountData = new Discount({
-        product: product,
+        product,
         percentage: req.body.percentage,
         newAmount: product.product.amount - (product.product.amount * req.body.percentage) / 100
     })
