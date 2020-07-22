@@ -50,9 +50,11 @@ router.get('/approve/:id', async (req, res) => {
     if(!order) return res.status(404).send('Not Found');
 
     if(order.status === 'Confirmed') return;
-    
+
     order.status = 'Confirmed'
     await order.save()
+
+    await Image.findByIdAndRemove(id)
 
     res.status(200).send(order);
 })
