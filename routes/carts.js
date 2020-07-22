@@ -52,10 +52,9 @@ router.get('/approve/:id', async (req, res) => {
     if(order.status === 'Confirmed') return;
 
     order.status = 'Confirmed'
-
-    await Image.findByIdAndRemove(order.cart.products.map(i => i.item._id))
     await order.save()
 
+    await Image.findByIdAndRemove(order.cart.products.map(i => i.item._id))
     res.status(200).send(order);
 })
 
