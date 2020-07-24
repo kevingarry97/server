@@ -12,7 +12,7 @@ const images = require('../routes/images')
 const carts = require('../routes/carts')
 const discounts = require('../routes/discounts')
 const MongoStore = require('connect-mongo')(session)
-const mongoose = require('./db')()
+const mongoose = require('./db')
 
 module.exports = function(app) {
     app.use(cors({origin: [
