@@ -12,6 +12,7 @@ const auth = require('../routes/auth')
 const images = require('../routes/images')
 const carts = require('../routes/carts')
 const discounts = require('../routes/discounts')
+const { mongoose } = require('mongoose')
 
 module.exports = function(app) {
     app.use(cors({origin: [
