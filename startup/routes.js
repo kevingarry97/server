@@ -4,7 +4,6 @@ const session = require('express-session')
 const error = require('../middleware/error')
 const mails = require('../routes/mails')
 const category = require('../routes/categories')
-const config = require('config')
 const subCategory = require('../routes/subCategories')
 const product = require('../routes/products')
 const user = require('../routes/users')
@@ -13,10 +12,7 @@ const images = require('../routes/images')
 const carts = require('../routes/carts')
 const discounts = require('../routes/discounts')
 const MongoStore = require('connect-mongo')(session)
-var mongoose = require('mongoose');
-
-const db = config.get('db');
-mongoose.connect(db);
+const mongoose = require('./db')()
 
 module.exports = function(app) {
     app.use(cors({origin: [
@@ -32,7 +28,7 @@ module.exports = function(app) {
       resave: false,
       saveUninitialized: false,
       store: new MongoStore({
-        mongooseConnection: mongoose.connection
+        mongooseConnection: mongoose.connection,
       }),
       cookie: {
         maxAge: 180 * 60 * 1000
