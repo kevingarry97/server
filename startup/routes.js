@@ -4,6 +4,7 @@ const session = require('express-session')
 const error = require('../middleware/error')
 const mails = require('../routes/mails')
 const category = require('../routes/categories')
+const config = require('config')
 const subCategory = require('../routes/subCategories')
 const product = require('../routes/products')
 const user = require('../routes/users')
@@ -12,7 +13,10 @@ const images = require('../routes/images')
 const carts = require('../routes/carts')
 const discounts = require('../routes/discounts')
 const MongoStore = require('connect-mongo')(session)
-const mongoose = require('./db')
+var mongoose = require('mongoose');
+
+const db = config.get('db');
+mongoose.connect(db);
 
 module.exports = function(app) {
     app.use(cors({origin: [
