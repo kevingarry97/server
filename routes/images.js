@@ -1,8 +1,8 @@
 const express = require('express')
-const upload = require('../multer')
+const upload = require('../startup/multer')
 const mongoose = require('mongoose')
 const { Product } = require('../model/product')
-const cloudinary = require('../cloudinary');
+const cloudinary = require('../startup/cloudinary');
 const { Image, validate } = require('../model/image')
 const router = express.Router()
 

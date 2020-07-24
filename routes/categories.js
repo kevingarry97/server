@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
     const category = await Category.find()
-    res.send(category);
+    res.send(category)
 })
 
 router.post('/', async (req, res) => {
