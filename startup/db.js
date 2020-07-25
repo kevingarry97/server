@@ -9,7 +9,7 @@ mongoose.connect(db, {
     useCreateIndex: true, 
     useFindAndModify: false 
 })
-.then(() => winston.info('Connected to mongoDB...'))
+.then(() => winston.info(`Connected to ${db}...`))
 
 
 exports.mongoose = mongoose;

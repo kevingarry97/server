@@ -13,7 +13,7 @@ router.get('/shopping-cart', (req, res) => {
 })
 
 router.get('/orders', async (req, res) => {
-    const order = await Order.find()
+    const order = await Order.find().sort(date)
     res.send(order)
 })
 

@@ -1,6 +1,8 @@
+const auth = require('../middleware/auth')
 const express = require('express')
 const mongoose = require('mongoose')
 const { Category, validate } = require('../model/category')
+const validateObjectId = require('../middleware/validateObjectId')
 
 const router = express.Router()
 
@@ -9,7 +11,15 @@ router.get('/', async (req, res) => {
     res.send(category)
 })
 
-router.post('/', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
+    const category = await Category.findById(req.params.id)
+
+    if(!category) return res.status(404).send('The Category with the ID is invalid')
+
+    res.send(category)
+})
+
+router.post('/', auth, async (req, res) => {
     const { error } = validate(req.body)
     if (error) return res.status(400).send(error.details[0].message)
 
